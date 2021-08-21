@@ -5,12 +5,15 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Table(name = "condominio")
 public class Condominio {
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "nombre")
     private String nombre;
 
     private String direccion;
@@ -23,7 +26,7 @@ public class Condominio {
 
     private Float cuotaMensual;
 
-    private CondoStatus estado;
+    private String estado;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "condominio")
     private Set<Cuota> historicoCoutas;
@@ -39,7 +42,7 @@ public class Condominio {
 
     }
 
-    public Condominio(Long id, String nombre, String direccion, String cedulaJuridica, String representanteLegal, Float cantidadUnidades, Float cuotaMensual, CondoStatus estado) {
+    public Condominio(Long id, String nombre, String direccion, String cedulaJuridica, String representanteLegal, Float cantidadUnidades, Float cuotaMensual, String estado) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -106,11 +109,11 @@ public class Condominio {
         this.cuotaMensual = cuotaMensual;
     }
 
-    public CondoStatus getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(CondoStatus estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
